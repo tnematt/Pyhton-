@@ -1,0 +1,36 @@
+## Visual 1: Average Subscribers by Category
+
+import matplotlib.pyplot as plt
+
+category_avg = (
+    df_clean.groupby("category")["subscribers"]
+    .mean()
+    .sort_values(ascending=False)
+)
+
+plt.figure(figsize=(8,5))
+category_avg.plot(kind="bar")
+plt.xlabel("Category")
+plt.ylabel("Average Subscribers")
+plt.title("Average Subscribers by Category")
+plt.xticks(rotation=45)
+plt.show()
+
+
+
+## Visual 2: Number of Channels by Country
+df_clean["Country"].value_counts().head(10).plot(kind="bar", figsize=(8,5))
+plt.xlabel("Country"); plt.ylabel("Number of Channels")
+plt.title("Top 10 Countries by Number of YouTube Channels")
+plt.xticks(rotation=45); plt.show()
+
+
+## Visual 3: Subscribers vs Video Views
+plt.figure(figsize=(8,5))
+plt.scatter(df_clean["subscribers"], df_clean["video views"])
+plt.xlabel("Subscribers")
+plt.ylabel("Video Views")
+plt.title("Subscribers vs Video Views")
+plt.show()
+
+
