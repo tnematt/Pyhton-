@@ -1,0 +1,151 @@
+1.	Write a program that takes a sentence as input and creates a dictionary that shows how many times each word appears.
+
+rip = input("Enter a sentence: ")
+words = rip.split()
+
+word_count = {}
+
+for w in words:
+    w = w.lower() 
+    if w in word_count:
+        word_count[w] += 1
+    else:
+        word_count[w] = 1
+
+print(word_count)
+
+
+2	Write a program that calculates the sum of the main diagonal of a 2D list (square matrix). Example: 
+ 	 		                       
+
+            Sum = 1 + 5 + 9 = 15
+
+def diagonal_sum(matrix):
+    total = 0
+    for i in range(len(matrix)):
+        total += matrix[i][i]
+    return total
+
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+print (diagonal_sum(matrix))
+
+3.You are given a list of tuples, where each tuple contains two numbers. Write a Python program using map and lambda to flatten this list into a single list that contains all numbers. The order should first include all the first elements of the tuples, then all the second elements.
+
+pairs = [(1, 2), (3, 4), (5, 6)]
+
+first_elements = list(map(lambda x: x[0], pairs))
+second_elements = list(map(lambda x: x[1], pairs))
+
+general = first_elements + second_elements
+print(general)
+
+4.Write a function sum_non_negative(numbers) that takes a list of integers. If a number is negative then skip it. Otherwise, add the number to a running total. Return the final sum.
+
+def sum_non_negative(numbers):
+    total = 0
+    for num in numbers:
+        if num >= 0:
+            total = total + num
+    return total
+    
+print(sum_non_negative([5, -1, 1, -2, 10]))   
+
+5.	Create a function that returns the maximum of three given numbers (without built-in max() function).
+
+def first_largest(numbers):
+    first_largest = list(set(numbers))
+    first_largest.sort()
+    return first_largest[-1]
+
+numbers = [3, 7, 2, 9]
+print (first_largest(numbers))
+
+6.Write a function that takes a string and returns the number of vowels in it.
+
+
+def count_vowels(text):
+    vowels = "aeiouAEIOU"
+    count = 0
+    for ch in text:
+        if ch in vowels:
+            count += 1
+    return count
+
+word = input("Enter a word or sentence: ")
+print("Number of vowels:", count_vowels(word))
+
+7.Write a function odd_index_chars(text) that takes a string. Return a new string containing only the characters located at odd indices (1, 3, 5, etc.).
+
+def odd_index_chars(text):
+    answer = " "
+    for i in range(len(text)):
+        if i % 2 == 1:
+            answer += text[i]
+    return answer
+print(odd_index_chars("Salam necesen"))
+
+8.Write a function calculate_median(lst) that correctly finds the median of a list of numbers. It must handle both odd and even lengths. 
+
+def calculate_median(first_num):
+    first_num.sort()
+    x = len(first_num)
+    mid = x // 2
+
+    if x % 2 == 1:
+        return first_num[mid]
+    else:
+        return (first_num[mid - 1] + first_num[mid]) / 2
+    
+print(calculate_median([1, 3, 2]))
+print(calculate_median([1, 2, 3, 5]))
+    
+9.Create a class DataScaler that implements a method normalize(self) to perform Min-Max Scaling on its internal list of numbers. Handle the case where Max = Min.                           
+Min-Max normalization: (x - Min) / (Max - Min)
+
+class DataScaler:
+    def __init__(self, data):
+        self.data = data
+
+    def normalize(self):
+        min_val = min(self.data)
+        max_val = max(self.data)
+
+        normalized = [(x - min_val) / (max_val - min_val) for x in self.data]
+        return normalized
+
+numbers = [10, 20, 30, 40, 50]
+scaler = DataScaler(numbers)
+print("Normalized data:", scaler.normalize())
+
+10.Write a function conditional_sum(nested_list, condition_func) that uses nested loops to traverse the lists and filter() to select elements based on a provided condition function before summing them up. 
+
+# Example Usage:
+           data = [[1, 5, 10], [2, 8, 12], [3, 6, 9]]
+	# Conditional statement (is_even)
+	# Expected Output: 38 (10 + 2 + 8 + 12 + 6)
+
+
+def conditional_sum(nested_list, condition_func):
+    total = 0
+    for inner_list in nested_list:
+        filtered = filter(condition_func, inner_list)
+        for x in filtered:
+            total += x
+    return total
+
+def is_even(x):
+    return x % 2 == 0
+
+data = [[1, 5, 10], [2, 8, 12], [3, 6, 9]]
+print(conditional_sum(data, is_even))
+
+
+
+
+
+
+
